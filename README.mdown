@@ -1,0 +1,14 @@
+# Rackson Five
+
+Add some jackson five love into your app
+
+## Usage
+ 
+    require 'rubygems'
+    require 'rack/rackson-five'
+
+    use Rack::RacksonFive
+
+    app = lambda {|env| [200,{'Content-Type' => "text/html"},"<html><head><title>Rackson-Five Test</title></head><body>Hello World</body><html>"]}
+
+    run app
