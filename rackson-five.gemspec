@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rackson-five}
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adam Holt"]
@@ -20,7 +20,9 @@ Gem::Specification.new do |s|
      "README.mdown",
      "Rakefile",
      "VERSION",
+     "lib/rack/html/rackson-five.html",
      "lib/rack/images/group.png",
+     "lib/rack/images/tile.png",
      "lib/rack/midi/want_you_back.mid",
      "lib/rack/rackson-five.rb"
   ]

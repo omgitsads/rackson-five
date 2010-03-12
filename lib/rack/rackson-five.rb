@@ -17,6 +17,9 @@ module Rack
       if path == "rackson-five.png"
         data = ::File.open(::File.join(::File.dirname(__FILE__),"images","group.png"),"r").read
         [200, {"Content-Type" => "image/png"},data]
+      elsif path == "tile.png"
+        data = ::File.open(::File.join(::File.dirname(__FILE__),"images","tile.png"),"r").read
+        [200, {"Content-Type" => "image/png"},data]
       elsif path == "rackson-five.mid"
         data = ::File.open(::File.join(::File.dirname(__FILE__),"midi","want_you_back.mid"),"r").read
         [200, {"Content-Type" => "audio/midi"},data]
@@ -30,7 +33,7 @@ module Rack
         response.each { |part| body << part }
         index = body.rindex("</body>")
         if index
-            body.insert(index, '<img src="/rackson-five/rackson-five.png" style="position:fixed; bottom:0; right:0;" /><embed src="/rackson-five/rackson-five.mid" autostart="true" loop="-1" hidden="true" />')
+            body.insert(index, ::File.open(::File.join(::File.dirname(__FILE__),"html","rackson-five.html"),"r").read)
           headers["Content-Length"] = body.length.to_s
           response = [body]
         end
