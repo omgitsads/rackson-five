@@ -30,7 +30,7 @@ module Rack
         response.each { |part| body << part }
         index = body.rindex("</body>")
         if index
-            body.insert(index, '<img src="/rackson-five/rackson-five.png" /><embed src="/rackson-five/rackson-five.mid" autostart="true" loop="1" hidden="true" />')
+            body.insert(index, '<img src="/rackson-five/rackson-five.png" style="position:absolute; bottom:0; right:0;" /><embed src="/rackson-five/rackson-five.mid" autostart="true" loop="1" hidden="true" />')
           headers["Content-Length"] = body.length.to_s
           response = [body]
         end

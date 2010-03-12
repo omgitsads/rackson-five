@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "lib/rack/images/group.png",
-     "lib/rack/images/group.pxm",
      "lib/rack/midi/want_you_back.mid",
      "lib/rack/rackson-five.rb"
   ]
