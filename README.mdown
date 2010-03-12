@@ -2,6 +2,10 @@
 
 Add some jackson five love into your app
 
+## Installation
+  
+    [sudo] gem install rackson-five
+
 ## Usage
  
     require 'rubygems'

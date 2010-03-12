@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adam Holt"]
-  s.date = %q{2010-03-11}
+  s.date = %q{2010-03-12}
   s.description = %q{Embeds Jackson Five members into your rack based application}
   s.email = %q{ads.noob@gmail.com}
   s.extra_rdoc_files = [
@@ -21,6 +21,8 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "lib/rack/images/group.png",
+     "lib/rack/images/group.pxm",
+     "lib/rack/midi/want_you_back.mid",
      "lib/rack/rackson-five.rb"
   ]
   s.homepage = %q{http://github.com/omgitsads/rackson-five}
