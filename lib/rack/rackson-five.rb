@@ -1,9 +1,5 @@
 module Rack
-  class RacksonFive < Struct.new :options
-    def initialize(app)
-      @app = app
-    end
-    
+  class RacksonFive < Struct.new :app, :options
     def call(env)
       request = Rack::Request.new(env)
       if request.path_info =~ /^\/rackson-five\/(.+)$/
@@ -13,37 +9,34 @@ module Rack
       end
     end
     
-    def rackson_five_request(path)
-      if path == "rackson-five.png"
-        data = ::File.open(::File.join(::File.dirname(__FILE__),"images","group.png"),"r").read
-        [200, {"Content-Type" => "image/png"},data]
-      elsif path == "tile.png"
-        data = ::File.open(::File.join(::File.dirname(__FILE__),"images","tile.png"),"r").read
-        [200, {"Content-Type" => "image/png"},data]
-      elsif path == "rackson-five.mid"
-        data = ::File.open(::File.join(::File.dirname(__FILE__),"midi","want_you_back.mid"),"r").read
-        [200, {"Content-Type" => "audio/midi"},data]
-      end
-    end
-    
-    def jacksonify(env)
-      status, headers, response = @app.call(env)
-      if headers["Content-Type"] =~ /text\/html|application\/xhtml\+xml/
-        body = ""
-        response.each { |part| body << part }
-        index = body.rindex("</body>")
-        if index
-            body.insert(index, ::File.open(::File.join(::File.dirname(__FILE__),"html","rackson-five.html"),"r").read)
-          headers["Content-Length"] = body.length.to_s
-          response = [body]
+    private
+      def rackson_five_request(path)
+        if path == "rackson-five.png"
+          [200, {"Content-Type" => "image/png"}, read_file("images", "group.png")]
+        elsif path == "tile.png"
+          [200, {"Content-Type" => "image/png"}, read_file("images","tile.png")]
+        elsif path == "rackson-five.mid"
+          [200, {"Content-Type" => "audio/midi"}, read_file("midi","want_you_back.mid")]
         end
       end
-      [status, headers, response]
-    end
     
-    def member
-      all_members = [:group, :micheal, :tito, :jermaine, :randy, :marlon, :jackie]
-      available_members = all_members - (all_members - options[:members])
-    end
+      def jacksonify(env)
+        status, headers, response = app.call(env)
+        if headers["Content-Type"] =~ /text\/html|application\/xhtml\+xml/
+          body = ""
+          response.each { |part| body << part }
+          index = body.rindex("</body>")
+          if index
+              body.insert(index, read_file("html", "rackson-five.html"))
+            headers["Content-Length"] = body.length.to_s
+            response = [body]
+          end
+        end
+        [status, headers, response]
+      end
+      
+      def read_file(type, filename)
+        ::File.open(::File.join(::File.dirname(__FILE__),type.to_s,filename),"r").read
+      end
   end
 end
