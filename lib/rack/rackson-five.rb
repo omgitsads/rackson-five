@@ -36,7 +36,7 @@ module Rack
       end
       
       def read_file(type, filename)
-        ::File.open(::File.join(::File.dirname(__FILE__),type.to_s,filename),"r").read
+        [::File.open(::File.join(::File.dirname(__FILE__),type.to_s,filename),"r").read]
       end
   end
 end
