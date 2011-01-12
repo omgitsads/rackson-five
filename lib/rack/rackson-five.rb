@@ -12,11 +12,11 @@ module Rack
     private
       def rackson_five_request(path)
         if path == "rackson-five.png"
-          [200, {"Content-Type" => "image/png"}, read_file("images", "group.png")]
+          [200, {"Content-Type" => "image/png"}, [read_file("images", "group.png")]]
         elsif path == "tile.png"
-          [200, {"Content-Type" => "image/png"}, read_file("images","tile.png")]
+          [200, {"Content-Type" => "image/png"}, [read_file("images","tile.png")]]
         elsif path == "rackson-five.mid"
-          [200, {"Content-Type" => "audio/midi"}, read_file("midi","want_you_back.mid")]
+          [200, {"Content-Type" => "audio/midi"}, [read_file("midi","want_you_back.mid")]]
         end
       end
     
@@ -36,7 +36,7 @@ module Rack
       end
       
       def read_file(type, filename)
-        [::File.open(::File.join(::File.dirname(__FILE__),type.to_s,filename),"r").read]
+        ::File.open(::File.join(::File.dirname(__FILE__),type.to_s,filename),"r").read
       end
   end
 end
